@@ -6,6 +6,7 @@ The `conMItion.TestData.BLCA.Rdata` file contains preprocessed mutation and copy
 
 - **MC3 Mutation Data**: This data was directly downloaded from the official website.
 - **Copy Number Data**: This data was acquired using the `TCGAbiolinks` package.
+- **Tumor Purity Data**: This data was obtained from paper `Genomic and Functional Approaches to Understanding Cancer Aneuploidy`.
 
 
 ---
