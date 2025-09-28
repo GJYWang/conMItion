@@ -60,3 +60,45 @@ To execute this step, run:
 ```bash
 Rscript 4.summarize_result.R
 ```
+
+
+## Additional Use Case: Cell Fraction Associations (Example2)
+
+In addition to the primary use case, we provide a second example located in the `Example2` folder. This use case demonstrates how the `conMItion` package can be used to calculate associations between cell fractions in single cell cancer data.
+
+### Overview
+
+The objective of this use case is to explore the relationships between various cell fractions using the `conMItion` package. Similar to the primary use case, this analysis employs the metrics of MI and CMI.
+
+### Data
+
+The dataset for this use case is available in `data/CellFraction.Rdata`. This Rdata file includes:
+
+- `cell_composition`: Contains the cell fraction data for different cell types.
+- `malignant`: Includes fraction of malignant cells.
+
+### Workflow
+
+This use case is structured into the following similar steps (in the `Example2` folder):
+
+### Step 1 & 2: Calculate Associations & Generate Permutation Distributions
+
+Calculate the associations using MI and CMI. This step utilizes the `parallel` package to enhance computational efficiency. Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes.
+
+
+To execute these steps, run:
+```bash
+Rscript 1.Calc.Asso.R
+bash 2.FRAC_permu.sh
+```
+
+### Step 3: Organize Permutation & Summarize Results 
+
+Collect and sort all permutation results generated in Step 2 to prepare them for the final analysis. Summarize the results from Steps 1 and 3. The script generates a summary dataframe in R, including P values for the associations.
+
+
+To execute these steps, run:
+```bash
+Rscript 3.org_permu.R
+Rscript 4.summarize_result.R
+```
