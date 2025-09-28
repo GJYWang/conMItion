@@ -79,7 +79,7 @@ The dataset for this use case is available in `data/CellFraction.Rdata`. This Rd
 
 ### Workflow
 
-This use case is structured into the following similar steps (in the `Example2` folder):
+This use case is structured into the following similar steps (Please run the codes below in the `Example2` folder):
 
 ### Step 1 & 2: Calculate Associations & Generate Permutation Distributions
 
