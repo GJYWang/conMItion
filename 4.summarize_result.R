@@ -22,6 +22,7 @@ matrix_to_dataframe <- function(mat) {
   return(sorted_df)
 }
 
+before_load = NULL
 # Loop over each association type: "CMIBi", "CMI", and "MI"
 for (asso_type in c("CMIBi", "CMI", "MI")) {
   
