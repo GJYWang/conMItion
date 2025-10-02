@@ -36,8 +36,7 @@ Rscript 1.Calc.Asso.R
 
 ### Step 2: Generate Permutation Distributions
 
-Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes.
-
+Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes. Please change mxqsub to other job submission command such as qsub based on the system. 
 To execute this step, run:
 ```bash
 bash 2.Mut_CNV_permu.sh
@@ -83,7 +82,7 @@ This use case is structured into the following similar steps (Please run the cod
 
 ### Step 1 & 2: Calculate Associations & Generate Permutation Distributions
 
-Calculate the associations using MI and CMI. This step utilizes the `parallel` package to enhance computational efficiency. Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes.
+Calculate the associations using MI and CMI. This step utilizes the `parallel` package to enhance computational efficiency. Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes. Please change mxqsub to other job submission command such as qsub based on the system. 
 
 
 To execute these steps, run:
