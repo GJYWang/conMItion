@@ -6,10 +6,8 @@ permutationTimes = as.numeric(args[2])
 # Load pre-existing test data for cell fraction in cancer
 load(file = '../data/CellFraction.Rdata')
 
-cell_composition_new <- do.call(rbind, replicate(10, cell_composition, simplify = FALSE))
-
-permutationMIVector = MImat2matPermu(cell_composition_new,
-                                     cell_composition_new,
+permutationMIVector = MImat2matPermu(cell_composition,
+                                     cell_composition,
                                      bin = 8, sp_order = 2,
                                      bulkIdx = bulkIdx,
                                      permutationTimes = permutationTimes)
@@ -19,8 +17,8 @@ save(permutationMIVector,
                   paste('permutationVector','MI',bulkIdx,'Rdata',sep = '.'),
                   sep = '/'))
 
-permutationMIVector = CMImat2matPermu(cell_composition_new,
-                                      cell_composition_new,
+permutationMIVector = CMImat2matPermu(cell_composition,
+                                      cell_composition,
                                       malignant,
                                       bin = 8, sp_order = 2,
                                       bulkIdx = bulkIdx,
