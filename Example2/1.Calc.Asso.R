@@ -44,8 +44,8 @@ CMIMatrix <- t(mcmapply(
 ))
 
 row.names(CMIMatrix) = row.names(cell_composition)
-row.names(CMIMatrix) = row.names(cell_composition)
-colnames(MIMatrix) = row.names(cell_composition)
+colnames(CMIMatrix) = row.names(cell_composition)
+row.names(MIMatrix) = row.names(cell_composition)
 colnames(MIMatrix) = row.names(cell_composition)
 
 # Create a directory to store the results; if it exists, no warning is shown
