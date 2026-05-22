@@ -6,7 +6,7 @@ permutationTimes = as.numeric(args[2])
 # Load pre-existing test data for bladder cancer
 load('data/conMItion.TestData.BLCA.Rdata')
 
-permutationMIVector = MImat2matPermu(mutationMatrix,
+permutationMIVector = MImat2matPermu(expressionMatrix,
                                      CNVMatrix,
                                      bin = 8, sp_order = 2,
                                      bulkIdx = bulkIdx,

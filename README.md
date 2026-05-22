@@ -16,6 +16,7 @@ The primary objective of this use case is to identify associations between Copy 
 The dataset used in this example is from TCGA BLCA and is stored in `data/conMItion.TestData.BLCA.Rdata`. The key variables included in this Rdata file are:
 
 - `mutationMatrix`: Contains MC3 mutation data.
+- `expressionMatrix`: Contains gene expression data.
 - `CNVMatrix`: Contains Copy Number data, where the copy numbers of 40 neighboring genes are averaged to reduce runtime.
 - `reducedGeneList`: Stores the corresponding gene identifiers for the CNVMatrix.
 - `PurityVector`: Includes tumor purity data.
@@ -23,7 +24,7 @@ The dataset used in this example is from TCGA BLCA and is stored in `data/conMIt
 
 ## Workflow
 
-The entire process is organized into four main steps:
+This use case focuses on association analysis between Copy Number and gene expression. But replacing `expressionMatrix` to `mutationMatrix`, association between mutation and copy number will be analyzed. The entire process is organized into four main steps:
 
 ### Step 1: Calculate Associations
 
@@ -39,7 +40,7 @@ Rscript 1.Calc.Asso.R
 Generate bootstrapped/permutation distributions for estimating statistical significance. This step is divided into 500 jobs and distributed across multiple computing nodes. Please change mxqsub to other job submission command such as qsub based on the system. 
 To execute this step, run:
 ```bash
-bash 2.Mut_CNV_permu.sh
+bash 2.permu.sh
 ```
 
 ### Step 3: Organize Permutation Results

@@ -9,22 +9,22 @@ load('data/conMItion.TestData.BLCA.Rdata')
 dir.create('result', showWarnings = FALSE)
 
 # Set the number of cores for parallel computation to 6
-numCores = 6
+numCores = 60
 
 # Use MI to calculate association
-calculate_MI <- function(i, mutationMatrix, CNVMatrix) {
+calculate_MI <- function(i, expressionMatrix, CNVMatrix) {
   cat(i,'\n')
   MImat2mat(
     CNVMatrix,
-    matrix(rep(mutationMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
+    matrix(rep(expressionMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
     bin = 8, sp_order = 2
   )
 }
 
 MIMatrix <- t(mcmapply(
   calculate_MI,
-  1:nrow(mutationMatrix),
-  MoreArgs = list(mutationMatrix = mutationMatrix, CNVMatrix = CNVMatrix),
+  1:nrow(expressionMatrix),
+  MoreArgs = list(expressionMatrix = expressionMatrix, CNVMatrix = CNVMatrix),
   mc.cores = numCores
 ))
 
@@ -36,11 +36,11 @@ save(MIMatrix,
 #########
 
 # Use CMI (one condition variable) to calculate association
-calculate_CMI <- function(i, mutationMatrix, CNVMatrix, PurityVector) {
+calculate_CMI <- function(i, expressionMatrix, CNVMatrix, PurityVector) {
   cat(i,'\n')
   CMImat2mat(
     CNVMatrix,
-    matrix(rep(mutationMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
+    matrix(rep(expressionMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
     PurityVector,
     bin = 8, sp_order = 2
   )
@@ -48,8 +48,8 @@ calculate_CMI <- function(i, mutationMatrix, CNVMatrix, PurityVector) {
 
 CMIMatrix <- t(mcmapply(
   calculate_CMI,
-  1:nrow(mutationMatrix),
-  MoreArgs = list(mutationMatrix = mutationMatrix, CNVMatrix = CNVMatrix, PurityVector = PurityVector),
+  1:nrow(expressionMatrix),
+  MoreArgs = list(expressionMatrix = expressionMatrix, CNVMatrix = CNVMatrix, PurityVector = PurityVector),
   mc.cores = numCores
 ))
 
@@ -61,11 +61,11 @@ save(CMIMatrix,
 #########
 
 # Use CMI (two condition variables) to calculate association
-calculate_CMIBi <- function(i, mutationMatrix, CNVMatrix, PurityVector, MutBurdenVector) {
+calculate_CMIBi <- function(i, expressionMatrix, CNVMatrix, PurityVector, MutBurdenVector) {
   cat(i,'\n')
   CMIBiCondimat2mat(
     CNVMatrix,
-    matrix(rep(mutationMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
+    matrix(rep(expressionMatrix[i,], each = nrow(CNVMatrix)), nrow = nrow(CNVMatrix), byrow = FALSE),
     PurityVector, MutBurdenVector,
     bin = 8, sp_order = 2
   )
@@ -73,8 +73,8 @@ calculate_CMIBi <- function(i, mutationMatrix, CNVMatrix, PurityVector, MutBurde
 
 CMIBiCondiMatrix <- t(mcmapply(
   calculate_CMIBi,
-  1:nrow(mutationMatrix),
-  MoreArgs = list(mutationMatrix = mutationMatrix, CNVMatrix = CNVMatrix, PurityVector = PurityVector, MutBurdenVector = mutationBurden),
+  1:nrow(expressionMatrix),
+  MoreArgs = list(expressionMatrix = expressionMatrix, CNVMatrix = CNVMatrix, PurityVector = PurityVector, MutBurdenVector = mutationBurden),
   mc.cores = numCores
 ))
 
